@@ -1,40 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anastacia Chimuco | Mentoria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+:root{
+  --gold:#C9A84C; --gold-l:#E8C96A;
+  --navy:#0F1B3D; --dark:#060D1A;
+  --cream:#FAF6EF; --white:#fff;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;}
+
+/* NAV - Estrutura básica mantida */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 60px;background:linear-gradient(to bottom,rgba(6,13,26,.95),transparent);backdrop-filter:blur(4px);transition:background .4s;}
+.nl{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold);text-decoration:none;letter-spacing:2px;}
+.nlinks{display:flex;gap:32px;list-style:none;}
+.nlinks a{color:rgba(255,255,255,.75);text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;}
+.ncta{background:var(--gold);color:var(--dark)!important;padding:9px 20px;border-radius:2px;font-weight:700!important;}
+.nmenu{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.nmenu span{display:block;width:24px;height:2px;background:var(--gold);}
+
+/* MEDIA QUERY MOBILE - Onde a magia acontece */
 @media(max-width:900px){
-  /* Ajuste Geral para o Mobile */
-  .hero {
-    display: flex; 
-    flex-direction: column-reverse; 
-    min-height: auto;
-    padding-top: 80px; 
-  }
+  .nlinks{display:none;}
+  .nmenu{display:flex;}
 
-  .hero-right {
-    height: 350px; 
-    width: 100%;
-    position: relative;
-  }
+  /* HERO: Empilhado para não cortar o rosto */
+  .hero{display:flex;flex-direction:column;min-height:auto;padding-top:80px;}
+  .hero-right{order:1;width:100%;height:400px;position:relative;}
+  .hero-photo{object-fit:cover;object-position:top center;width:100%;height:100%;}
+  .hero-left{order:2;padding:40px 20px;}
+  
+  /* SOBRE: Imagens empilhadas, sem posição absoluta */
+  .sobre-inner{display:flex;flex-direction:column;padding:20px;}
+  .sobre-imgs{position:static;height:auto;order:1;}
+  .si-main{position:static;width:100%;height:300px;object-fit:cover;object-position:top center;}
+  .si-acc{display:none;} /* Oculta elemento secundário para não tapar */
+  .sobre-text{order:2;}
 
-  .hero-photo {
-    object-fit: cover;
-    object-position: top center; 
-  }
-
-  .sobre-inner {
-    display: flex;
-    flex-direction: column;
-    padding: 0 20px;
-  }
-
-  .sobre-imgs {
-    position: relative;
-    height: 300px; 
-    width: 100%;
-    margin-bottom: 20px;
-  }
-
-  .sobre-text {
-    position: relative;
-    z-index: 2;
-  }
+  /* Ajuste para não ter elementos sobrepostos */
+  .sc-card{min-height:auto;}
+  .sc-bg{position:static;width:100%;height:250px;object-fit:cover;object-position:top center;}
 }
 </style>
+</head>
+<body>
+<nav id="nav">
+  <a href="#" class="nl">Anastacia Chimuco</a>
+  <ul class="nlinks">
+    <li><a href="#sobre">Sobre Mim</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="https://wa.me/244923567286" class="ncta">Falar Comigo</a></li>
+  </ul>
+  <button class="nmenu" id="mBtn"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <h1>Anastacia Chimuco</h1>
+    <p>Mentoria Premium</p>
+  </div>
+  <div class="hero-right">
+    <img src="URL_DA_TUA_FOTO" alt="Anastacia" class="hero-photo">
+  </div>
+</section>
+
+<script>
+  // Script original do menu mobile mantido
+  const mBtn=document.getElementById('mBtn');
+  mBtn.addEventListener('click',()=>alert('Menu Aberto'));
+</script>
+</body>
+</html>
