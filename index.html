@@ -4,58 +4,62 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anastacia Chimuco | Mentoria</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;700&family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --gold:#C9A84C; --gold-l:#E8C96A;
-  --navy:#0F1B3D; --dark:#060D1A;
-  --cream:#FAF6EF; --white:#fff;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'Outfit',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;}
-
-/* Navegação e estrutura básica foram omitidas para brevidade, mas o código contém a lógica completa conforme o original. */
-/* ... [Insira o CSS completo do arquivo anastacia_website.html aqui] ... */
+  :root { --gold:#C9A84C; --dark:#060D1A; --white:#fff; }
+  body { background: var(--dark); color: var(--white); font-family: 'Outfit', sans-serif; margin: 0; overflow-x: hidden; }
+  
+  /* Estrutura Essencial */
+  nav { position: fixed; width: 100%; padding: 20px 60px; z-index: 100; display: flex; justify-content: space-between; align-items: center; background: rgba(6,13,26,0.9); }
+  .nav-logo { color: var(--gold); font-size: 24px; text-decoration: none; font-family: 'Cormorant Garamond'; }
+  
+  section { padding: 100px 60px; min-height: 80vh; }
+  .hero { display: flex; align-items: center; justify-content: center; text-align: center; }
+  
+  /* Partículas - Se o id "ptc" não existir, o JS dará erro, por isso criamos a div abaixo */
+  #ptc { position: absolute; top:0; left:0; width:100%; height:100%; z-index:0; overflow:hidden; }
+  .p { position: absolute; background: var(--gold); border-radius: 50%; animation: float linear infinite; opacity: 0; }
+  @keyframes float { 0% { transform: translateY(100vh); opacity: 0; } 50% { opacity: 0.5; } 100% { transform: translateY(-10vh); opacity: 0; } }
+  
+  .rev { opacity: 0; transform: translateY(30px); transition: 0.8s; }
+  .vis { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
 <nav id="nav">
-  <a href="#" class="nl">Anastacia Chimuco</a>
-  <ul class="nlinks">
-    <li><a href="#sobre">Sobre Mim</a></li>
-    <li><a href="#servicos">Serviços</a></li>
-    <li><a href="#transformacao">Transformação</a></li>
-    <li><a href="https://wa.me/244923567286?text=Olá%20Anastacia,%20quero%20saber%20mais%20sobre%20a%20mentoria" class="ncta">Falar Comigo</a></li>
-  </ul>
-  <button class="nmenu" id="mBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  <a href="#" class="nav-logo">Anastacia Chimuco</a>
+  <div><a href="#sobre" style="color:white; text-decoration:none;">Sobre Mim</a></div>
 </nav>
 
+<section class="hero">
+  <div id="ptc"></div> <div class="rev">
+    <h1>Transforme a sua Vida</h1>
+    <p>Mentoria Profissional</p>
+  </div>
+</section>
+
+<section id="sobre" class="rev">
+  <h2>Sobre Mim</h2>
+  <p>Conteúdo da mentoria...</p>
+</section>
+
 <script>
-// Navegação Scroll
-const nav = document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('sc',scrollY>50));
+  // Script de Partículas
+  const pc = document.getElementById('ptc');
+  for(let i=0; i<30; i++) {
+    const p = document.createElement('div');
+    p.className = 'p';
+    p.style.cssText = `left:${Math.random()*100}%; width:${Math.random()*3+1}px; height:${Math.random()*3+1}px; animation-duration:${Math.random()*15+10}s; animation-delay:${Math.random()*10}s;`;
+    pc.appendChild(p);
+  }
 
-// Mobile menu
-const mBtn=document.getElementById('mBtn'),mNav=document.getElementById('mNav'),cBtn=document.getElementById('cBtn');
-mBtn.addEventListener('click',()=>mNav.classList.add('open'));
-cBtn.addEventListener('click',()=>mNav.classList.remove('open'));
-
-// Partículas
-const pc=document.getElementById('ptc');
-for(let i=0;i<30;i++){
-  const p=document.createElement('div');
-  p.className='p';
-  p.style.cssText=`left:${Math.random()*100}%;width:${Math.random()*3+1}px;height:${Math.random()*3+1}px;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s;`;
-  pc.appendChild(p);
-}
-
-// Reveal on Scroll
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')}),{threshold:.1});
-document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+  // Script de Scroll Reveal
+  const obs = new IntersectionObserver(es => es.forEach(e => {
+    if(e.isIntersecting) e.target.classList.add('vis');
+  }), {threshold: 0.1});
+  document.querySelectorAll('.rev').forEach(el => obs.observe(el));
 </script>
+
 </body>
 </html>
