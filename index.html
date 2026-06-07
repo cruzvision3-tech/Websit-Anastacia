@@ -1,24 +1,24 @@
+<style>
 @media(max-width:900px){
   /* Ajuste Geral para o Mobile */
   .hero {
     display: flex; 
-    flex-direction: column-reverse; /* Coloca a foto abaixo do texto, ou 'column' para foto acima */
+    flex-direction: column-reverse; 
     min-height: auto;
-    padding-top: 80px; /* Espaço para o nav fixo */
+    padding-top: 80px; 
   }
 
   .hero-right {
-    height: 350px; /* Define uma altura fixa para a foto */
+    height: 350px; 
     width: 100%;
     position: relative;
   }
 
   .hero-photo {
     object-fit: cover;
-    object-position: top center; /* Garante que o rosto fica visível */
+    object-position: top center; 
   }
 
-  /* Evitar sobreposição de texto e fotos */
   .sobre-inner {
     display: flex;
     flex-direction: column;
@@ -27,14 +27,14 @@
 
   .sobre-imgs {
     position: relative;
-    height: 300px; /* Ajusta conforme necessário */
+    height: 300px; 
     width: 100%;
     margin-bottom: 20px;
   }
 
-  /* Garante que o texto não fica por baixo de elementos */
   .sobre-text {
     position: relative;
     z-index: 2;
   }
 }
+</style>
