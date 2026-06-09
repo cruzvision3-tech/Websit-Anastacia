@@ -328,29 +328,35 @@ nav.scrolled { background: rgba(6,13,26,0.97); }
   gap: 80px;
   align-items: center;
 }
+
+/* CORRECAO 1: Ajuste das imagens para nao sobrepor o texto */
 .sobre-imgs {
   position: relative;
   height: 600px;
+  width: 100%;
+  overflow: visible;
 }
 .sobre-img-main {
   position: absolute;
   top: 0; right: 0;
-  width: 78%;
-  height: 520px;
+  width: 75%;
+  height: 480px;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 20%;
   border-radius: 2px;
+  z-index: 1;
 }
 .sobre-img-accent {
   position: absolute;
-  bottom: 0; left: 0;
-  width: 52%;
-  height: 320px;
+  bottom: 40px; left: 0;
+  width: 50%;
+  height: 280px;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 20%;
   border-radius: 2px;
   border: 6px solid var(--cream-light);
   box-shadow: 0 24px 64px rgba(15,27,61,0.2);
+  z-index: 2;
 }
 .sobre-gold-box {
   position: absolute;
@@ -359,8 +365,14 @@ nav.scrolled { background: rgba(6,13,26,0.97); }
   border: 2px solid var(--gold);
   opacity: 0.4;
   border-radius: 2px;
+  z-index: 0;
 }
-.sobre-text { }
+.sobre-text {
+  position: relative;
+  z-index: 3;
+  background: var(--cream-light);
+  padding: 20px 0;
+}
 .section-tag {
   display: inline-flex;
   align-items: center;
@@ -505,7 +517,7 @@ nav.scrolled { background: rgba(6,13,26,0.97); }
   font-weight: 300;
 }
 
-/* ─── SERVIÇOS ─── */
+/* ─── SERVICOS ─── */
 .servicos {
   background: var(--dark);
   padding: 120px 0;
@@ -522,83 +534,91 @@ nav.scrolled { background: rgba(6,13,26,0.97); }
   gap: 32px;
   margin-top: 70px;
 }
+
+/* CORRECAO FINAL: Layout lateral profissional - texto na direita, rosto visivel */
 .servico-card {
   position: relative;
   border-radius: 4px;
   overflow: hidden;
-  min-height: 680px;
+  min-height: 520px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  flex-direction: row;
+  align-items: flex-end;
 }
 .servico-bg {
   position: absolute; inset: 0;
   object-fit: cover;
-  object-position: center top;
   width: 100%; height: 100%;
   transition: transform 0.6s ease;
+  object-position: center top;
 }
 .servico-card:hover .servico-bg {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
+
+/* Overlay sutil apenas na base para legibilidade do texto */
 .servico-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top,
-    rgba(6,13,26,0.99) 0%,
-    rgba(6,13,26,0.97) 35%,
-    rgba(6,13,26,0.55) 55%,
-    rgba(6,13,26,0.05) 100%);
+  background: linear-gradient(to right, 
+    rgba(6,13,26,0.10) 0%, 
+    rgba(6,13,26,0.05) 40%,
+    rgba(6,13,26,0.70) 60%,
+    rgba(6,13,26,0.95) 100%);
+  z-index: 1;
 }
+
+/* Conteudo posicionado na lateral direita - nao cobre o rosto */
 .servico-content {
-  position: relative; z-index: 2;
-  padding: 40px 48px 48px;
+  position: relative;
+  z-index: 2;
+  padding: 40px 36px 40px 20px;
+  margin-left: auto;
+  width: 50%;
+  min-width: 280px;
+  text-align: left;
 }
 .servico-badge {
-  position: absolute;
-  top: 24px;
-  left: 24px;
-  z-index: 3;
   display: inline-block;
-  padding: 6px 16px;
+  padding: 6px 14px;
   background: var(--gold);
   color: var(--dark);
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   border-radius: 2px;
-  margin-bottom: 0;
+  margin-bottom: 14px;
 }
 .servico-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 36px;
+  font-size: 26px;
   font-weight: 700;
   color: var(--white);
-  margin-bottom: 16px;
-  line-height: 1.1;
+  margin-bottom: 10px;
+  line-height: 1.2;
 }
 .servico-desc {
-  font-size: 14px;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.65);
-  margin-bottom: 28px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 18px;
   font-weight: 300;
 }
 .servico-price {
   display: flex;
   align-items: baseline;
   gap: 8px;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 .price-label {
-  font-size: 12px;
+  font-size: 11px;
   color: rgba(255,255,255,0.5);
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 .price-amount {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 700;
   color: var(--gold);
 }
@@ -609,8 +629,8 @@ nav.scrolled { background: rgba(6,13,26,0.97); }
   background: transparent;
   border: 1px solid var(--gold);
   color: var(--gold);
-  padding: 12px 28px;
-  font-size: 12px;
+  padding: 10px 24px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -866,35 +886,159 @@ footer {
   .hero-right { height: 500px; }
   .hero-gold-line { display: none; }
   .stats-bar { left: 28px; bottom: 28px; gap: 24px; }
-  .sobre-inner { grid-template-columns: 1fr; padding: 0 28px; gap: 50px; }
-  .sobre-imgs {
-    height: auto;
-    min-height: 360px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+
+  /* CORRECAO: Sobre section em mobile */
+  .sobre-inner { 
+    grid-template-columns: 1fr; 
+    padding: 0 28px; 
+    gap: 50px; 
+  }
+  .sobre-imgs { 
+    height: 350px; 
+    order: -1;
   }
   .sobre-img-main {
-    position: relative;
-    top: auto; right: auto;
-    width: 100%;
-    height: 360px;
+    width: 85%;
+    height: 280px;
+    right: 0;
   }
-  .sobre-img-accent { display: none; }
-  .sobre-gold-box { display: none; }
-  .sobre-text { order: -1; }
-  .transform-inner { grid-template-columns: 1fr; padding: 0 28px; gap: 50px; }
+  .sobre-img-accent {
+    width: 55%;
+    height: 200px;
+    bottom: 20px;
+  }
+  .sobre-text {
+    padding: 0;
+  }
+
   .grid-cards { grid-template-columns: 1fr; padding: 0 28px; }
   .section-center { padding: 0 28px; }
   .servicos-inner { padding: 0 28px; }
   .servicos-grid { grid-template-columns: 1fr; }
-  .servico-card { min-height: 600px; }
+
+  /* CORRECAO: Servicos em mobile - texto mantem-se na lateral direita */
+  .servico-card { 
+    min-height: 380px; 
+    flex-direction: row; 
+    align-items: flex-end;
+  }
+  .servico-overlay {
+    background: linear-gradient(to right, 
+      rgba(6,13,26,0.15) 0%, 
+      rgba(6,13,26,0.10) 35%,
+      rgba(6,13,26,0.60) 55%,
+      rgba(6,13,26,0.95) 100%);
+  }
+  .servico-content { 
+    width: 55%; 
+    margin-left: auto; 
+    padding: 28px 24px 28px 12px;
+    margin-top: 0;
+  }
+  .servico-title { font-size: 20px; }
+  .servico-desc { 
+    max-width: 100%; 
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .servico-badge { 
+    font-size: 8px; 
+    padding: 4px 10px;
+    margin-bottom: 8px;
+  }
+  .servico-price { margin-bottom: 12px; }
+  .price-amount { font-size: 22px; }
+  .servico-btn { 
+    padding: 8px 18px; 
+    font-size: 10px;
+  }
+
+  .transform-inner { grid-template-columns: 1fr; padding: 0 28px; gap: 50px; }
   footer { padding: 48px 28px 32px; flex-direction: column; }
   .cta-band { padding: 60px 28px; }
+}
+
+@media (max-width: 600px) {
+  .sobre-imgs { height: 300px; }
+  .sobre-img-main { height: 220px; }
+  .sobre-img-accent { height: 160px; bottom: 10px; }
+
+  /* CORRECAO: Servicos em telemovel - texto continua na lateral direita */
+  .servico-card { 
+    min-height: 340px; 
+    flex-direction: row;
+    align-items: flex-end;
+  }
+  .servico-overlay {
+    background: linear-gradient(to right, 
+      rgba(6,13,26,0.10) 0%, 
+      rgba(6,13,26,0.05) 30%,
+      rgba(6,13,26,0.50) 50%,
+      rgba(6,13,26,0.95) 100%);
+  }
+  .servico-content { 
+    width: 60%; 
+    margin-left: auto; 
+    padding: 20px 20px 20px 8px;
+  }
+  .servico-title { font-size: 18px; margin-bottom: 6px; }
+  .servico-desc { 
+    font-size: 11px; 
+    line-height: 1.45;
+    margin-bottom: 10px;
+  }
+  .servico-badge { 
+    font-size: 7px; 
+    padding: 3px 8px;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+  }
+  .servico-price { margin-bottom: 10px; }
+  .price-amount { font-size: 20px; }
+  .servico-btn { 
+    padding: 6px 14px; 
+    font-size: 9px;
+    letter-spacing: 1.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .servico-card { 
+    min-height: 300px;
+  }
+  .servico-overlay {
+    background: linear-gradient(to right, 
+      rgba(6,13,26,0.08) 0%, 
+      rgba(6,13,26,0.03) 25%,
+      rgba(6,13,26,0.45) 45%,
+      rgba(6,13,26,0.95) 100%);
+  }
+  .servico-content { 
+    width: 65%; 
+    padding: 16px 16px 16px 6px;
+  }
+  .servico-title { font-size: 16px; }
+  .servico-desc { 
+    font-size: 10px; 
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .servico-badge { 
+    font-size: 6px; 
+    padding: 2px 6px;
+    letter-spacing: 1px;
+  }
+  .price-amount { font-size: 18px; }
+  .servico-btn { 
+    padding: 5px 12px; 
+    font-size: 8px;
+  }
 }
 </style>
 </head>
 <body>
+
 
 <!-- NAVBAR -->
 <nav id="navbar">
@@ -1200,5 +1344,6 @@ const statsObs = new IntersectionObserver((entries) => {
 const statsBar = document.querySelector('.stats-bar');
 if (statsBar) statsObs.observe(statsBar);
 </script>
+
 </body>
 </html>
